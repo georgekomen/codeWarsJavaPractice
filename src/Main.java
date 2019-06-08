@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -26,4 +27,30 @@ class Practice {
                 .compile("\\w{0,}"+String.valueOf(r)+"{2,}"+"\\w{0,}").matcher(word.toLowerCase()).matches() ? ")" : "(")
                 .reduce("",(e, g) -> e.concat(g));
     }
+
+
+    //     Given an array, find the int that appears an odd number of times.
+//
+//     There will always be only one integer that appears an odd number of times.
+
+    public static int findIt(int[] a) {
+        int an = 0;
+        for (int t : a) {
+            int g1 =  Arrays.stream(a).reduce(0, (a1, b1) -> {
+                if(b1 == t) a1++;
+                return a1;
+            });
+
+            if(g1 % 2 != 0) {
+                an = t;
+                break;
+            } else {
+                continue;
+            }
+
+        }
+        return an;
+    }
 }
+
+
